@@ -1,5 +1,4 @@
 # Linux notes
-<<<<<<< HEAD
 =======
 +-----------------------------------------+
 | cybersecurity notes                               |
@@ -235,3 +234,123 @@ bash - [git tag -a v1.0 -m "message"]
 bash - [git reset --soft HEAD~1]
 bash - [git reset --hard HEAD~1]
 >>>>>>> 5f7d605 (Initial commit)
+
+Bash:
+
+1. Bash scripts
+A Bash script is a text file containing a series of commands that are executed by the bash shell, which is the command processor in most linux and Unix-like systems. Bash (short for "Bourne Again shell") scripts can automate tasks like file manipulation, system monitoring, data processing, and program execution.
+
+2. Common Uses of Bash scripts
+-Automation: Repeating tasks like backups, file management, or data processing.
+-System Administration: Monitoring system health (disk space, memory), starting or stopping services, etc.
+-Batch Processing: Running multiple commands or programs in sequence
+
+3. How to write a simple Bash script
+A basic Bash script starts with a "shebang" (#!) line that specifies the scripts interpreter, followed by the commands to be executed.
+
+Example: #!/bin/bash
+        echo "Hello, world!"
+To execute this script: 
+-  Save it in a file e.g. hello.sh
+- Make it executable: chmod +x hello.sh
+- Run it: ./hello.sh
+
+Example of Variables:
+#!/bin/bash
+NAME="Josh"
+echo "Hello, $NAME!"
+(Variables are defined without spaces around the = sign, and you access them using $)
+
+4. Control Structures: If-else, for loop, while loop
+
+If-else Example: 
+#!/bin/bash
+NUMBER=10
+if [ $NUMBEr -gt 5]; then
+echo "The number is greater than 5"
+else 
+echo "The number is less than or equal to 5"
+fi
+
+For loop Example:
+#!/bin/bash
+for i in 1 2 3 4 5; do
+echo "Number: $i"
+done 
+
+While Loop Example:
+#!/bin/bash
+COUNTER=1
+while [ $COUNTER -le 5]; do
+echo "Counter: $COUNTER"
+((COUNTER++))
+done
+
+5. Key Bash Commands
+-echo
+Displays text or Variables
+-read
+Gets input from the user
+-touch
+Makes an empty file
+-mkdir
+Creates a new directory
+-rm
+Removes a file
+-df 
+Displays disk space usage 
+-chmod 
+Changes file permissions
+
+6. Test script: Check and Create directory
+#!/bin/bash
+read -p "Enter directory name: " DIR_NAME
+if [ -d "$DIR_NAME" ]; then
+echo directory
+else
+echo "Creating directory $DIR_NAME..."
+mkdir $DIR_NAME
+fi
+(-d checks if the directory  exists, if not mkdir creates it)
+
+System Monitoring
+1. System monitoring means keeping track of how a computers resources (CPU, memory, disk. etc) are being used. its important for finding problems early, keeping the system fast, preventing downtime, and security.
+
+2. Key tools for system monitoring
+- top - Shows how the programs are currently running and their CPU/memory useage in real-time (press q to quit)
+- htop - A friendlier version of top that shows system processes visually 
+- df - Shows how much disk space is used and available (E.g. df -h)
+- uptime - Displays how long the computar had been running and the average CPU load 
+
+3. Log Monitoring
+- journalctl - Used for querying and displaying logs from the system journal, which collects logs from systemd services
+to see recent logs with details on errors: journalctl -xe
+To display logs for a specific boot: journalctl -b
+- /var/log - The directory where linux system logs are stored. It conatins log files like syslog, auth.log, dmesg, etc.
+To view they system log(syslog), which contains general system messages: cat /var/log/syslog
+To view authentication logs (useful for checking login attempts): cat /var/log/auth.log
+
+4. Step-by-Step Guide: Monitoring System Resource Usage and checking logs
+- Step 1: Check CPU and memory usage
+Run htop for an interactive, real-time view of CPU, memory, and processes.
+(htop)
+Use the arrow keys to scroll through the processes
+Press q to quit
+- Step 2: Check Disk Usage
+Use df -h to see how much disk space is used and available.
+(df -h)
+- Step 3: Check Sysytem uptime
+Run uptime to see how long the system has been running and the average CPU load.
+(uptime)
+- Step 4: Check logs for issues
+Check system logs: Use journalctl -xe to display recent system logs, especially errors and warnings.
+(journalctl -xe)
+- Step 5: View specific logs 
+Look at the /var/log/sylog for general system logs.
+(cat /var/log/syslog)
+- Step 6: Check authentication logs
+View /var/log/auth.log for details on login attempts or authentication failures.
+(cat var/log/auth.log)
+
+
+

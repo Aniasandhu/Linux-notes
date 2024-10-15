@@ -231,3 +231,81 @@ bash - [git tag -a v1.0 -m "message"]
 • Reset Commits:
 bash - [git reset --soft HEAD~1]
 bash - [git reset --hard HEAD~1]
+
+Bash:
+
+1. Bash scripts
+A Bash script is a text file containing a series of commands that are executed by the bash shell, which is the command processor in most linux and Unix-like systems. Bash (short for "Bourne Again shell") scripts can automate tasks like file manipulation, system monitoring, data processing, and program execution.
+
+2. Common Uses of Bash scripts
+-Automation: Repeating tasks like backups, file management, or data processing.
+-System Administration: Monitoring system health (disk space, memory), starting or stopping services, etc.
+-Batch Processing: Running multiple commands or programs in sequence
+
+3. How to write a simple Bash script
+A basic Bash script starts with a "shebang" (#!) line that specifies the scripts interpreter, followed by the commands to be executed.
+
+Example: #!/bin/bash
+        echo "Hello, world!"
+To execute this script: 
+-  Save it in a file e.g. hello.sh
+- Make it executable: chmod +x hello.sh
+- Run it: ./hello.sh
+
+Example of Variables:
+#!/bin/bash
+NAME="Josh"
+echo "Hello, $NAME!"
+(Variables are defined without spaces around the = sign, and you access them using $)
+
+4. Control Structures: If-else, for loop, while loop
+
+If-else Example: 
+#!/bin/bash
+NUMBER=10
+if [ $NUMBEr -gt 5]; then
+echo "The number is greater than 5"
+else 
+echo "The number is less than or equal to 5"
+fi
+
+For loop Example:
+#!/bin/bash
+for i in 1 2 3 4 5; do
+echo "Number: $i"
+done 
+
+While Loop Example:
+#!/bin/bash
+COUNTER=1
+while [ $COUNTER -le 5]; do
+echo "Counter: $COUNTER"
+((COUNTER++))
+done
+
+5. Key Bash Commands
+-echo
+Displays text or Variables
+-read
+Gets input from the user
+-touch
+Makes an empty file
+-mkdir
+Creates a new directory
+-rm
+Removes a file
+-df 
+Displays disk space usage 
+-chmod 
+Changes file permissions
+
+6. Test script: Check and Create directory
+#!/bin/bash
+read -p "Enter directory name: " DIR_NAME
+if [ -d "$DIR_NAME" ]; then
+echo directory
+else
+echo "Creating directory $DIR_NAME..."
+mkdir $DIR_NAME
+fi
+(-d checks if the directory  exists, if not mkdir creates it)
