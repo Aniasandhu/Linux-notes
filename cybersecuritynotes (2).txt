@@ -192,7 +192,7 @@ In networking, ports are like virtual endpoints for communication. They allow a 
 19. **iftop:** Displays a list of network connections in real-time, showing data rates and data traffic.  
 
 20. **tcpdump:** Captures and analyzes network traffic. 
-
+____
 Git:
 
 •Initialize Repository:
@@ -231,7 +231,7 @@ bash - [git tag -a v1.0 -m "message"]
 • Reset Commits:
 bash - [git reset --soft HEAD~1]
 bash - [git reset --hard HEAD~1]
-
+_____
 Bash:
 
 1. Bash scripts
@@ -309,8 +309,8 @@ echo "Creating directory $DIR_NAME..."
 mkdir $DIR_NAME
 fi
 (-d checks if the directory  exists, if not mkdir creates it)
-
-System Monitoring
+_________________
+System Monitoring:
 1. System monitoring means keeping track of how a computers resources (CPU, memory, disk. etc) are being used. its important for finding problems early, keeping the system fast, preventing downtime, and security.
 
 2. Key tools for system monitoring
@@ -348,3 +348,14 @@ Look at the /var/log/sylog for general system logs.
 - Step 6: Check authentication logs
 View /var/log/auth.log for details on login attempts or authentication failures.
 (cat var/log/auth.log)
+________________
+System security:
+1. Basic System Security Principles on Linux
+Linux security is based on controlling user access to files, programs, and system resources. The key Principles include:
+-Least Privilege: Gives users and processes only the permissions they need.
+-Regular Updates: Keep software and the system up to date to patch vulnerabilites.
+-Access Control: Use strong passwords, manage users, and limit access to critical files.
+-Firewall: Control network access to and from the system
+-Audit logs: Regularly monitor logs to detect any unauthorized activities.
+
+2. File Permissions
