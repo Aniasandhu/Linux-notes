@@ -359,3 +359,115 @@ Linux security is based on controlling user access to files, programs, and syste
 -Audit logs: Regularly monitor logs to detect any unauthorized activities.
 
 2. File Permissions
+Linux uses a permission system to control who can read, write, or execute files and directories. There are three main types of permissions:
+- Read (r): Permission to read the file or list the directory contents
+- Write (w): Permission to modify the file or directory contents
+- Execute (x): Permission to run the file (if its a script/program) or enter a directory
+Permissions are grouped by:
+- Owner: The user who owns the file.
+- Group: Users who belong to a group that has permissions.
+- Others: Everyone else.
+
+How to view permissions: ls -l
+Example output: -rwxr-xr-- 1 owner group 512 Oct 15 12:34 filename
+- rwx: Owner can read, write, and execute.
+- r-x: Group can read and execute.
+- r--: Others can only read.
+
+Changing permissions with chmod:
+- chmod +x: Makes files executable
+E.g.: chmod +x script.sh
+
+To set specific permissions:
+chmod 700 foldername
+- This gives the owner full access (read, write, execute), and denies access to group and others.
+
+Changing Ownership with chown
+- Change the owner of a file or directory:
+(chown new_owner file.txt)
+- Change the owner and group:
+(chown new_owner:new_group file.txt)
+
+3. User management
+Create a user: Use adduser to create a new user.
+- E.g: sudo adduser newusername
+
+Modify a user: Use usermod to modify an existing user.
+- Add user to a group: sudo usermod -aG groupname username
+Delete a user: User deluser to remove a user from the system.
+- E.g: sudo deluser username
+
+Assigning Permissions to users:
+Create a new grouyp: sudo groupadd groupname
+Add a user to the group: sudo usermod -aG groupname username
+Change the group ownership of a file: sudo chown :groupname file.txt
+
+4. Firewall basic: ufw (Uncomplicated Firewall)
+The ufw tool is used to manage firewall rules and control network access.
+Enable the firewall: sudo ufw enable
+Allow a port (e.g., port 80 for HTTP): sudo ufw allow 80
+Deny a port: sudo ufw deny 22
+Check status: sudo ufw status
+
+5. Self-made instructions: Securing a folder and setting up firewall rules
+- Step 1: Create a directory (if not already existing):
+(mkdir secure_folder)
+- Step 2. Change the permissions of the folder so only the owner can access it: 
+(chmod 700 secure_folder)
+This gives the owner full permissions (read, write, execute) and denies access to everyone else.
+- Step 3.Change the ownership of the folder (if needed):
+(sudo chown username:groupname secure_folder)
+- Step 4: Setting up basic firewall rules with ufw
+Enable the firewall:
+(sudo ufw enable)
+- Step 5: Allow traffic on port 80 (HTTP)
+(sudo ufw allow 80)
+- Step 6: Deny access to SSH (port 22) if its not needed:
+(sudo ufw deny 22)
+- Step 7: Check the firewall status to confirm the ruls:
+(sudo ufw status)
+________________________________________________________________________
+Explanation of the Script Concepts (from Least Complex to Most Complex):
+1. Comments (#):
+- In the script, anything written after a # symbol is ignored by the computer. It’s called a comment. Comments are used to explain the code to anyone reading it, so they know what each part does. Comments are important to help you understand what you are working on or were trying to do in your code and act as reminders. There is no limit to the amount of comments or their detail you should or could have.
+
+2. echo:
+- The echo command is used to display a message on the screen. It's like making the computer "say" something to the user. These are useful for you display prompts, comments or instructions to the user.
+- The echo command is also a useful tool to test your code. Putting in an echo both inside and outside an if block can help you see what is working in your code or what is broken. echo statements used fir troubleshooting should always be removed when troubleshooting is complete.
+
+3. Variables:
+- Variables are like containers that store values. In this script, age_years and age_days are variables.
+- read -p "Enter your age in years: " age_years takes the user's input and stores it in the age_years variable.
+- Tip: you can use an echo to display the value of a variable for troubleshooting purposes.
+
+4. if Statement:
+- The if statement is used to check if something is true. It helps us control which parts of the script run based on a condition.
+- For example, we use if to make sure the user’s input is valid.
+
+5. Regex (^[0-9]+$):
+- This part is a pattern used to match text. It’s called a "regular expression" (or regex).
+- ^[0-9]+$ means that the input must be made up of digits (0-9), and nothing else. This makes sure the user only types numbers.
+- ^ means "start of input" and $ means "end of input". [0-9] 
+- means any digit, and + means "at least one or more".
+Resource to learning more about Regex: regexlearn.com/learn/regex101
+
+Tip: Once you have typed or followed the instructions - hit the enter key to progress.
+Resource for testing and playing with Regex: regex101.com/
+
+6. [[ ]] and !~:
+- [[ ]] is used to test conditions in Bash. It helps make the script safer and easier to write.
+- !~ means "does not match". In this script, [[ ! $age_years =~ ^[0-9]+$ ]] checks if the input does not match the pattern (meaning it’s not a number).
+Tip: Other symbols you may want to explore are ==, |&nbsp;, &nbsp;&gt;&nbsp;, &nbsp;&lt;&nbsp;, -eq, -ne, -gt.
+
+We refer to these symbols as "Conditionals" and there are many more conditionals than what I have listed here.
+
+7. Arithmetic Calculation ($(( ))):
+- $(( )) is used to do math calculations in Bash.
+- age_days=$((age_years * 365)) calculates how many days are in the given number of years. It multiplies age_years by 365.
+
+8. Exit Code (exit 1):
+- exit 1 ends the script. The number 1 is an error code, which means something went wrong.
+- If the user types something that’s not a valid number, the script stops here.
+Tip: use an echo statement to give a clear message to yourself, and your user about what happened.
+
+
