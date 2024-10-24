@@ -263,7 +263,7 @@ echo "Hello, $NAME!"
 If-else Example: 
 #!/bin/bash
 NUMBER=10
-if [ $NUMBEr -gt 5]; then
+if [ "$NUMBER" -gt 5]; then
 echo "The number is greater than 5"
 else 
 echo "The number is less than or equal to 5"
@@ -278,7 +278,7 @@ done
 While Loop Example:
 #!/bin/bash
 COUNTER=1
-while [ $COUNTER -le 5]; do
+while [ "$COUNTER" -le 5]; do
 echo "Counter: $COUNTER"
 ((COUNTER++))
 done
