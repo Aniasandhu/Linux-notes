@@ -368,6 +368,12 @@ Permissions are grouped by:
 - Group: Users who belong to a group that has permissions.
 - Others: Everyone else.
 
+Octal Notion:
+- drwxr-xr-r
+- d |rwx |rwx |rwx
+   Owner Group Other
+-chmod 111 
+
 How to view permissions: ls -l
 Example output: -rwxr-xr-- 1 owner group 512 Oct 15 12:34 filename
 - rwx: Owner can read, write, and execute.
@@ -469,5 +475,6 @@ We refer to these symbols as "Conditionals" and there are many more conditionals
 - exit 1 ends the script. The number 1 is an error code, which means something went wrong.
 - If the user types something that’s not a valid number, the script stops here.
 Tip: use an echo statement to give a clear message to yourself, and your user about what happened.
+
 
 
